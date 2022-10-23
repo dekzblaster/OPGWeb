@@ -1,1 +1,19 @@
+on: [push]
 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy my nice code
+    steps:
+      - name: Deploy to OVH hosting
+        uses: appleboy/ssh-action@master
+        with:
+          host: 15.235.142.156
+          username: ${{ secrets.OVH_HOSTING_USER }}
+          password: ${{ secrets.OVH_HOSTING_PASSWORD }}
+          port: 22
+          script: |
+            cd "/var/www/html/themes"
+            git pull
+            sudo chown -R www-data:www-data "/var/www/html/themes"
+            
