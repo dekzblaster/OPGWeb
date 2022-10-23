@@ -13,7 +13,6 @@ jobs:
           password: ${{ secrets.OVH_HOSTING_PASSWORD }}
           port: 22
           script: |
-            sudo chmod g+w .git -R
             git config --global --add safe.directory /var/www/html/themes/Obsidian
             cd "/var/www/html/themes/Obsidian"
             git pull
